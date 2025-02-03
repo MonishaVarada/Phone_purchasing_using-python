@@ -1,0 +1,183 @@
+def get_phone_details(phone_name, model, storage, color):
+
+    phones = {
+        'iPhone': {
+            'iphone13': {
+                '64GB': {
+                    'Black': {'Price': '60k', 'Processor': 'A14 Bionic', 'RAM': '4GB', 'Camera': '12MP', 'Battery': '5000mAh', 'Display': '6.1-inch'},
+                    'White': {'Price': '50k', 'Processor': 'A14 Bionic', 'RAM': '6GB', 'Camera': '108MP', 'Battery': '4000mAh', 'Display': '6.4-inch'}
+                },
+                '128GB': {
+                    'Black': {'Price': '50k', 'Processor': 'A14 Bionic', 'RAM': '6GB', 'Camera': '48MP', 'Battery': '6000mAh', 'Display': '6.1-inch'},
+                    'White': {'Price': '70k', 'Processor': 'A14 Bionic', 'RAM': '8GB', 'Camera': '64MP', 'Battery': '5000mAh', 'Display': '6.5-inch'}
+                }
+            },
+            'iphone14': {
+                '64GB': {
+                    'Black': {'Price': '80k', 'Processor': 'A15 Bionic', 'RAM': '6GB', 'Camera': '48MP', 'Battery': '4000mAh', 'Display': '6.1-inch'},
+                    'White': {'Price': '90k', 'Processor': 'A15 Bionic', 'RAM': '8GB', 'Camera': '64MP', 'Battery': '5000mAh', 'Display': '6.1-inch'}
+                },
+                '128GB': {
+                    'Black': {'Price': '$849', 'Processor': 'A15 Bionic', 'RAM': '4GB', 'Camera': '48MP', 'Battery': '5000mAh', 'Display': '6.1-inch'},
+                    'White': {'Price': '$849', 'Processor': 'A15 Bionic', 'RAM': '6GB', 'Camera': '64MP', 'Battery': '6000mAh', 'Display': '6.1-inch'}
+                }
+            }
+        },
+        'Poco': {
+            'poco m3': {
+                '64GB': {
+                    'Blue': {'Price': '30k', 'Processor': 'Snapdragon 732G', 'RAM': '6GB', 'Camera': '48MP', 'Battery': '5160mAh', 'Display': '6.67-inch'},
+                    'Red': {'Price': '40k', 'Processor': 'Snapdragon 732G', 'RAM': '8GB', 'Camera': '64MP', 'Battery': '5100mAh', 'Display': '6.67-inch'}
+                },
+                '128GB': {
+                    'Blue': {'Price': '20k', 'Processor': 'Snapdragon 732G', 'RAM': '6GB', 'Camera': '48MP', 'Battery': '5160mAh', 'Display': '6.67-inch'},
+                    'Red': {'Price': '25k', 'Processor': 'Snapdragon 732G', 'RAM': '8GB', 'Camera': '108MP', 'Battery': '5160mAh', 'Display': '6.67-inch'}
+                }
+            },
+            'poco m4': {
+                '64GB': {
+                    'Blue': {'Price': '30k', 'Processor': 'Snapdragon 870', 'RAM': '8GB', 'Camera': '48MP', 'Battery': '4520mAh', 'Display': '6.67-inch'},
+                    'Red': {'Price': '35k', 'Processor': 'Snapdragon 870', 'RAM': '8GB', 'Camera': '64MP', 'Battery': '5000mAh', 'Display': '6.67-inch'}
+                },
+                '128GB': {
+                    'Blue': {'Price': '40k', 'Processor': 'Snapdragon 870', 'RAM': '8GB', 'Camera': '64MP', 'Battery': '4520mAh', 'Display': '6.67-inch'},
+                    'Red': {'Price': '45k', 'Processor': 'Snapdragon 870', 'RAM': '8GB', 'Camera': '48MP', 'Battery': '6000mAh', 'Display': '6.67-inch'}
+                }
+            }
+        }
+    }
+    
+    return phones[phone_name][model][storage][color]
+
+def main():
+    print("Welcome to the Mobile Phone Shop!")
+    attempts = 0
+
+    while True:
+        buy_phone = input("Do you want to buy a phone? (yes/no): ").strip().lower()
+        if buy_phone == 'yes':
+            break
+        elif buy_phone == 'no':
+            print("Thank you for visiting! See you next time.")
+            return
+        else:
+            attempts += 1
+            print("Invalid option. Please recheck your choice.")
+            if attempts >= 3:
+                print("Too many invalid attempts. Exiting.")
+                return
+    
+    attempts = 0
+    while True:
+        print("Which phone do you want to buy?")
+        print("1. iPhone")
+        print("2. Poco")
+        phone_choice = input("Enter the number corresponding to your choice: ").strip()
+        if phone_choice == '1':
+            phone_name = 'iPhone'
+            break
+        elif phone_choice == '2':
+            phone_name = 'Poco'
+            break
+        else:
+            attempts += 1
+            print("Invalid option. Please choose between 1 (iPhone) and 2 (Poco).")
+            if attempts >= 3:
+                print("Too many invalid attempts. Exiting.")
+                return
+
+    attempts = 0
+    while True:
+        if phone_name == 'iPhone':
+            print("Which model do you want?")
+            print("1.iphone13")
+            print("2.iphone14")
+            model_choice = input("Enter the number corresponding to your choice: ").strip()
+            if model_choice == '1':
+                model = 'iphone13'
+                break
+            elif model_choice == '2':
+                model = 'iphone14'
+                break
+        elif phone_name == 'Poco':
+            print("Which model do you want?")
+            print("1. poco m3")
+            print("2. poco m4")
+            model_choice = input("Enter the number corresponding to your choice: ").strip()
+            if model_choice == '1':
+                model = 'poco m3'
+                break
+            elif model_choice == '2':
+                model = 'poco m4'
+                break
+        
+        attempts += 1
+        print("Invalid option. Please choose between 1 and 2.")
+        if attempts >= 3:
+            print("Too many invalid attempts. Exiting.")
+            return
+
+    attempts = 0
+    while True:
+        print("Which storage variant do you want?")
+        print("1. 64GB")
+        print("2. 128GB")
+        storage_choice = input("Enter the number corresponding to your choice: ").strip()
+        if storage_choice == '1':
+            storage = '64GB'
+            break
+        elif storage_choice == '2':
+            storage = '128GB'
+            break
+        else:
+            attempts += 1
+            print("Invalid option. Please choose between 1 and 2.")
+            if attempts >= 3:
+                print("Too many invalid attempts. Exiting.")
+                return
+
+    attempts = 0
+    while True:
+        if phone_name == 'iPhone':
+            print("Which color do you want?")
+            print("1. Black")
+            print("2. White")
+        elif phone_name == 'Poco':
+            print("Which color do you want?")
+            print("1. Blue")
+            print("2. Red")
+        
+        color_choice = input("Enter the number corresponding to your choice: ").strip()
+        if color_choice == '1' and phone_name == 'iPhone':
+            color = 'Black'
+            break
+        elif color_choice == '2' and phone_name == 'iPhone':
+            color = 'White'
+            break
+        elif color_choice == '1' and phone_name == 'Poco':
+            color = 'Blue'
+            break
+        elif color_choice == '2' and phone_name == 'Poco':
+            color = 'Red'
+            break
+        else:
+            attempts += 1
+            print("Invalid option. Please choose between 1 and 2.")
+            if attempts >= 3:
+                print("Too many invalid attempts. Exiting.")
+                return
+
+
+    phone_details = get_phone_details(phone_name, model, storage, color)
+
+  
+    print("\nHere are the details of the phone you selected:")
+    print(f"Name: {phone_name}")
+    print(f"Model: {model}")
+    print(f"Storage: {storage}")
+    print(f"Color: {color}")
+    for key, value in phone_details.items():
+        print(f"{key}: {value}")
+
+if __name__ == "__main__":
+    main()
